@@ -17,11 +17,12 @@ echo "Restore from dump $PATH_SOURCE/mysql/db.sql"
 drush --root=$PATH_SOURCE/docroot sql-drop -y 
 drush --root=$PATH_SOURCE/docroot sql-cli < $PATH_SOURCE/mysql/db.sql
 echo "Pull code"
-cd $PATH_SOURCE/docroot
+cd $PATH_SOURCE
 git reset --hard
 git checkout master
 git pull origin master
 echo "Install site"
+cd docroot
 composer install
 drush updb -y
 drush cr
