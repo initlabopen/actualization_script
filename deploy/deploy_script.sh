@@ -1,3 +1,4 @@
+set -e
 ssh -p $1 $2@$3 "cd $4 && /usr/local/bin/drush cex -y"
 check_modify_files=$(ssh -p $1 $2@$3 "cd $4 && git diff -q")
 echo "Modify Files = $check_modify_files"
