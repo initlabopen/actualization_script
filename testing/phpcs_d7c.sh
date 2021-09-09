@@ -4,7 +4,7 @@ git fetch
 #git branch -a
 #git checkout $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
 git merge origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME --no-edit
-paths="modules\/custom|themes\/custom"
+paths="sites\/all\/modules\/custom|sites\/all\/themes\/stout|sites\/all\/themes\/stout_amp"
 extensions="php|inc|module|theme|install|css"
 regex="^($paths)\/.+\.($extensions)$"
 files=$(git diff-index --cached --name-only --diff-filter=ACMR origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME | grep -E $regex || true)
