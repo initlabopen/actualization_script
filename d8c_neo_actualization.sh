@@ -12,7 +12,7 @@ echo "Copy sites/default/files"
 rsync -av -e "ssh -p $PORT -i ~/.ssh/id_rsa_ci" "$USER"@"$HOST":"$PATH_DEST/docroot/sites/default/files/" "$PATH_SOURCE/docroot/sites/default/files/" --exclude 'settings.php'
 echo "Create dump to $PATH_SOURCE/mysql/db.sql"
 mkdir -p $PATH_SOURCE/mysql
-ssh -i ~/.ssh/id_rsa_ci -p $PORT "$USER"@"$HOST" /usr/local/bin/drush --root=$PATH_DEST/docroot sql-dump > $PATH_SOURCE/mysql/db.sql
+ssh -i ~/.ssh/id_rsa_ci -p $PORT "$USER"@"$HOST" drush --root=$PATH_DEST/docroot sql-dump > $PATH_SOURCE/mysql/db.sql
 echo "Restore from dump $PATH_SOURCE/mysql/db.sql"
 drush --root=$PATH_SOURCE/docroot sql-drop -y 
 drush --root=$PATH_SOURCE/docroot sql-cli < $PATH_SOURCE/mysql/db.sql
