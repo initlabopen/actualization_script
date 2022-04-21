@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 USER="$1"
 HOST="$2"
