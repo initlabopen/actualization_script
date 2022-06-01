@@ -21,7 +21,7 @@ git checkout test
 drush --root=$PATH_SOURCE cex -y
 check_modify_files=$(git diff -q)
 if [ -n "$check_modify_files" ]; then
-  old_branch=$(git branch | grep "test-old")
+  old_branch=$(git branch | grep "test-old" || true)
   if [ "$old_branch" ]; then
   	git branch -D test-old
   fi
