@@ -10,7 +10,7 @@ PATH_SOURCE="$4"
 PATH_DEST="$5"
 
 echo "Copy sites/default/files"
-rsync -av -e "ssh -p $PORT -i ~/.ssh/id_rsa_ci" "$USER"@"$HOST":"$PATH_DEST/sites/default/files/" "$PATH_SOURCE/sites/default/files/" --exclude 'settings.php'
+rsync -av -e "ssh -p $PORT -i ~/.ssh/id_rsa_ci" "$USER"@"$HOST":"$PATH_DEST/sites/default/files/" "$PATH_SOURCE/sites/default/files/" --exclude 'settings.php' --exclude 'styles/'
 echo "Create dump to $PATH_SOURCE/mysql/db.sql"
 mkdir -p $PATH_SOURCE/mysql
 ssh -i ~/.ssh/id_rsa_ci -p $PORT "$USER"@"$HOST" drush --root=$PATH_DEST sql-dump > $PATH_SOURCE/mysql/db.sql
