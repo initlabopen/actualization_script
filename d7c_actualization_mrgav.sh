@@ -15,6 +15,8 @@ echo "Create dump to $PATH_SOURCE/mysql/db.sql"
 mkdir -p $PATH_SOURCE/mysql
 ssh -i ./.ssh/id_rsa_ci -p $PORT "$USER"@"$HOST" drush --root=$PATH_DEST sql-dump > $PATH_SOURCE/mysql/db.sql
 echo "Restore from dump $PATH_SOURCE/mysql/db.sql"
+sed -i 's/PAGE_CHECKSUM=1//g' $PATH_SOURCE/mysql/db.sql
+sed -i 's/PAGE_CHECKSUM=0//g' $PATH_SOURCE/mysql/db.sql
 drush --root=$PATH_SOURCE sql-drop -y
 drush --root=$PATH_SOURCE sql-cli < $PATH_SOURCE/mysql/db.sql
 echo "Pull code"
