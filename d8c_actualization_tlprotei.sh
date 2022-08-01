@@ -40,6 +40,6 @@ git branch -D test
 git checkout -b test
 git push origin test --force
 echo "Install site"
-composer install
+/opt/php74/bin/php /usr/local/bin/composer install
 drush updb -y
 drush cr
