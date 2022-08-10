@@ -18,7 +18,7 @@ echo "Restore from dump $PATH_SOURCE/mysql/db.sql"
 sed -i 's/PAGE_CHECKSUM=1//g' $PATH_SOURCE/mysql/db.sql
 sed -i 's/PAGE_CHECKSUM=0//g' $PATH_SOURCE/mysql/db.sql
 drush --root=$PATH_SOURCE sql-drop -y
-drush --root=$PATH_SOURCE sql-cli < $PATH_SOURCE/mysql/db.sql
+drush --root=$PATH_SOURCE sql-cli < $PATH_SOURCE/mysql/db.sql || true
 echo "Pull code"
 cd $PATH_SOURCE
 git reset --hard
